@@ -3,6 +3,7 @@ import StarRating from "../starRating/starRating";
 import axios from "axios";
 import "./review.css";
 import { BASE_URL } from "../../Base_url";
+import Cookies from "js-cookie";
 
 const Review = ({movieId}) => {
     const [review, setReview] = useState([]);
@@ -10,7 +11,8 @@ const Review = ({movieId}) => {
     const [rating, setRating] = useState('');
 
     const handleDelete = () => {
-      axios.delete(`${BASE_URL}/${movieId}/review`, { withCredentials: true })
+     const token = Cookies.get("token");
+      axios.delete(`${BASE_URL}/${movieId}/review`,{token}, { withCredentials: true })
         .then(res => {
           console.log("response - ", res);
         })
@@ -30,7 +32,8 @@ const Review = ({movieId}) => {
 
     async function submit(e){
       e.preventDefault();
-      axios.post(`${BASE_URL}/${movieId}/review`, { rating, comment }, { withCredentials: true })
+	    const token = Cookies.get("token");
+      axios.post(`${BASE_URL}/${movieId}/review`, { rating, comment,token }, { withCredentials: true })
         .then(res => {
           console.log("response - ", res);
         })
