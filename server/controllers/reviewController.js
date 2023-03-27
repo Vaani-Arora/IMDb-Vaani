@@ -5,14 +5,15 @@ import jwt from "jsonwebtoken";
 const createMovieReview = asyncHandler(async (req, res) => {
   console.log("Incoming request params - ", req.params.id)
   console.log("Incoming request body - ", req.body)
-  console.log("Incoming request token - ", req.cookies.token)
+  //console.log("Incoming request token - ", req.cookies.token)
   const requestMovieId = req.params.id;
-  const userToken = req.cookies.token;
+  
+  const { rating, comment,token } = req.body
   try {
-    const decodedToken = jwt.verify(userToken, process.env.JWT_SECRET);
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken.id;
     // console.log(userId);
-    const { rating, comment } = req.body
+    
 
     const alreadyReviewed = await MovieReview.find({ movieId: requestMovieId, user: userId } );
 
@@ -61,12 +62,12 @@ const getMovieReview = asyncHandler(async (req, res) => {
 
 const deleteMovieReview = asyncHandler(async (req, res) => {
   console.log("Incoming request params - ", req.params.id)
-  console.log("Incoming request token - ", req.cookies.token)
+  //console.log("Incoming request token - ", req.cookies.token)
   const requestMovieId = req.params.id;
-  const userToken = req.cookies.token;
+  const { token } = req.body
 
   try {
-    const decodedToken = jwt.verify(userToken, process.env.JWT_SECRET);
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken.id;
     // console.log(userId);
 
