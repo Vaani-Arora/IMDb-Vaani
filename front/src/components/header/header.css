@@ -1,0 +1,48 @@
+
+.header {
+    background-color: #1a1a1a;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0 5rem;
+    align-items: center;
+}
+
+.headerLeft, .headerRight {
+    margin: 0 2.5rem;
+    padding: .5rem 0;
+    align-items: center;
+}
+
+a > span{
+    margin: 0 5px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background-color: inherit;
+    padding: 5px 40px;
+    border-radius: 5px;
+    color: white;
+    transition: color .4s, background-color .4s;
+}
+
+a > span:hover {
+    color: #DC1636;
+    background-color: rgba(0,0,0);
+}
+
+.header__icon {
+    width: 55px;
+    padding-top: 3px;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.user__avatar {
+    font-size: 2rem;
+}
+
+.loginButton {
+    vertical-align: middle;
+    padding-bottom: 3px;
+}
