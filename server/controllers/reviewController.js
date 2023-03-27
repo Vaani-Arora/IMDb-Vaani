@@ -19,7 +19,7 @@ const createMovieReview = asyncHandler(async (req, res) => {
     console.log("AlreadyReviewed? - ", alreadyReviewed)
 
     if (alreadyReviewed.length > 0) {
-      return res.status(401).json({ msg: "Movie already reviewed." });
+      return res.status(401).json({ msg: "Movie already reviewed. please refresh" });
     }
 
     const review = new MovieReview({
@@ -74,7 +74,7 @@ const deleteMovieReview = asyncHandler(async (req, res) => {
     console.log("Deleted? - ", deleted)
 
     if (deleted) {
-      return res.status(201).json({ message: 'Review succesfully added!' })
+      return res.status(201).json({ message: 'Review succesfully deleted!, please refresh' })
     }
 
     return res.status(404).json({ msg: "Review doesn't exist" });
